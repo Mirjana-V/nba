@@ -14,4 +14,32 @@
 </li>
 </div>
 @endforeach
+
+<div>
+    <h4>Comments:</h4>
+    <ul>
+        @foreach ($team->comments as $comment)
+        <li>
+            {{ $comment->content }}
+            by: {{ $comment->user->name }}
+        </li>
+        @endforeach
+    </ul>
+</div>
+
+<form method="POST" action="/teams/{{ $team->id }}/comments">
+@csrf
+
+<div class="mb-3">
+    <label class="form-label" >Leave a comment:</label>
+    <textarea class="form-control" name="content" rows="4" ></textarea>
+</div>
+
+@error('body')
+    @include('partials.error')
+@enderror
+
+    <button type="submit" class="btn brn-primary">Submit</button>
+    <hr>
+</form>
 @endsection
