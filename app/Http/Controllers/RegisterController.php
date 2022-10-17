@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\CreateUserRequest;
+use App\Mail\VerificationEmail;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -27,8 +29,18 @@ class RegisterController extends Controller
 
         $user->save();
 
+        Mail::to($user)->send(new VerificationEmail($user));
+
         auth()->login($user);
 
-        return redirect('/teams');
+        return redirect('/login');
+    }
+
+    public function update(){
+        $user = User::find($id);
+        $user->is_verified = true;
+        $user->save();
+
+        return view('auth.login', compact('user'));
     }
 }

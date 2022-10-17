@@ -36,3 +36,5 @@ Route::get('/login', [LoginController::class, 'create'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 
 Route::post('/teams/{id}/comments', [CommentsController::class, 'store']);
+
+Route::get('/login/{id}', [RegisterController::class, 'update'])->name('user_is_verified');
