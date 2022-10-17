@@ -35,6 +35,6 @@ Route::get('/logout', [LoginController::class, 'destroy']);
 Route::get('/login', [LoginController::class, 'create'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 
-Route::post('/teams/{id}/comments', [CommentsController::class, 'store']);
+Route::post('/teams/{id}/comments', [CommentsController::class, 'store'])->middleware('forbidden-words');
 
 Route::get('/login/{id}', [RegisterController::class, 'update'])->name('user_is_verified');

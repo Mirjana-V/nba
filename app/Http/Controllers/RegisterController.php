@@ -31,12 +31,11 @@ class RegisterController extends Controller
 
         Mail::to($user)->send(new VerificationEmail($user));
 
-        auth()->login($user);
 
         return redirect('/login');
     }
 
-    public function update(){
+    public function update($id){
         $user = User::find($id);
         $user->is_verified = true;
         $user->save();
