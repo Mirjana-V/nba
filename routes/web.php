@@ -6,6 +6,7 @@ use App\Http\Controllers\PlayersController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,6 @@ Route::post('/login', [LoginController::class, 'store']);
 Route::post('/teams/{id}/comments', [CommentsController::class, 'store'])->middleware('forbidden-words');
 
 Route::get('/login/{id}', [RegisterController::class, 'update'])->name('user_is_verified');
+
+Route::get('/news', [NewsController::class, 'index'])->name('news')->middleware('auth');
+Route::get('/news/{id}', [NewsController::class, 'show'])->name('singleNews')->middleware('auth');
