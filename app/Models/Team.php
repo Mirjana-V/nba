@@ -25,4 +25,8 @@ class Team extends Model
             'user_id' => auth()->id()
         ]);
     }
+
+    public function news(){
+        return $this->belongsToMany(News::class, 'news_team', 'news_id');
+    }
 }

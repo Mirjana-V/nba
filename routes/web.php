@@ -42,3 +42,5 @@ Route::get('/login/{id}', [RegisterController::class, 'update'])->name('user_is_
 
 Route::get('/news', [NewsController::class, 'index'])->name('news')->middleware('auth');
 Route::get('/news/{id}', [NewsController::class, 'show'])->name('singleNews')->middleware('auth');
+
+Route::get('/news/team/{teamName}', [NewsController::class, 'getNewsByTeamName'])->name('newsForTeam')->middleware('auth');

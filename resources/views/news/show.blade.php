@@ -14,4 +14,13 @@
 <br>
 Author: {{ $news->user->name }}
 
+
+@foreach ($news->teams as $team)
+<div>
+    <a href="{{route('newsForTeam', ['teamName' => $team->name]) }}">
+    {{ $team->name }}
+    </a>
+</div>
+@endforeach
+
 @endsection
